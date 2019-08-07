@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsTool>true</IsTool>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="templates\*.cstemplate" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="build\Alium.Data.CodeGeneration.props" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CodeGeneration.Roslyn" Version="0.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Alium.Core.CodeGeneration.Abstractions\Alium.Core.CodeGeneration.Abstractions.csproj" />
+    <ProjectReference Include="..\Alium.Data.CodeGeneration.Abstractions\Alium.Data.CodeGeneration.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

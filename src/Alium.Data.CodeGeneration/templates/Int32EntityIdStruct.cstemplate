@@ -1,0 +1,135 @@
+[System.Diagnostics.DebuggerDisplay("{DebuggerToString(),nq}")]
+readonly partial struct TEMPLATE_DATA_NAME__ : System.IComparable<TEMPLATE_DATA_NAME__>, System.IEquatable<TEMPLATE_DATA_NAME__>, Alium.Data.IEntityId<int>
+{
+    /// <summary>
+    /// Represents an empty TEMPLATE_DATA_NAME__
+    /// </summary>
+    public static readonly TEMPLATE_DATA_NAME__ Empty = new TEMPLATE_DATA_NAME__();
+
+    /// <summary>
+    /// Initialises a new instance of <see cref="TEMPLATE_DATA_NAME__" />
+    /// </summary>
+    /// <param name="value">The ID value</param>
+    public TEMPLATE_DATA_NAME__(int value)
+    {
+        Value = value;
+        HasValue = true;
+    }
+
+    /// <summary>
+    /// Gets whether the ID has value
+    /// </summary>
+    public bool HasValue { get; }
+
+    /// <summary>
+    /// Gets the value
+    /// </summary>
+    public int Value { get; }
+
+    /// <inheritdoc />
+    public int CompareTo(TEMPLATE_DATA_NAME__ other) 
+        => Value.CompareTo(other.Value);
+
+    /// <inheritdoc />
+    public bool Equals(TEMPLATE_DATA_NAME__ other) 
+        => (HasValue && other.HasValue && Value.Equals(other.Value)) || (!HasValue && !other.HasValue);
+
+    /// <inheritdoc />
+    public override bool Equals(object obj)
+    {
+        if (obj is null)
+        {
+            return false;
+        }
+
+        return obj is TEMPLATE_DATA_NAME__ other && Equals(other);
+    }
+
+    /// <inheritdoc />
+    public override int GetHashCode() => Value.GetHashCode();
+
+    /// <inheritdoc />
+    public override string ToString() => HasValue ? Value.ToString() : string.Empty;
+
+    /// <summary>
+    /// Returns the debug string representation of the current instance
+    /// </summary>
+    /// <returns>The debug string representation of the current instance</returns>
+    internal string DebuggerToString() => HasValue ? Value.ToString() : "(empty)";
+
+    /// <summary>
+    /// Provides conversion from another value sourced from another provider, for instance, a database value, or a JSON value
+    /// </summary>
+    /// <remarks>
+    ///     If value is an int, or an int? with a value, a UserId representing that value is returned.
+    ///     All other values will return Empty
+    /// </remarks>
+    /// <param name="value">The value object</param>
+    /// <returns>The <see cref="TEMPLATE_DATA_NAME__"/> value</returns>
+    public static TEMPLATE_DATA_NAME__ FromProviderValue(object? value)
+    {
+        if (value is int intValue)
+        {
+            return new TEMPLATE_DATA_NAME__(intValue);
+        }
+
+        if (value is string stringValue && TryParse(stringValue, out var id))
+        {
+            return id;
+        }
+
+        return Empty;
+    }
+
+    /// <summary>
+    /// Attempts to parse the given value to extract a <see cref="TEMPLATE_DATA_NAME__"/>, throwing an exception of the input value
+    /// was not in the correct format
+    /// </summary>
+    /// <param name="value">The input value</param>
+    /// <param name="id">[Out] The parsed <see cref="TEMPLATE_DATA_NAME__"/></param>
+    /// <returns>True if the value could be parsed, otherwise false</returns>
+    public static TEMPLATE_DATA_NAME__ Parse(string value)
+    {
+        if (TryParse(value, out TEMPLATE_DATA_NAME__ id))
+        {
+            return id;
+        }
+
+        throw new System.FormatException("Input string was not in a correct format.");
+    }
+
+    /// <summary>
+    /// Attempts to parse the given value to extract a <see cref="TEMPLATE_DATA_NAME__"/>
+    /// </summary>
+    /// <param name="value">The input value</param>
+    /// <param name="id">[Out] The parsed <see cref="TEMPLATE_DATA_NAME__"/></param>
+    /// <returns>True if the value could be parsed, otherwise false</returns>
+    public static bool TryParse(string value, out TEMPLATE_DATA_NAME__ id)
+    {
+        if (int.TryParse(value, out int intValue))
+        {
+            id = new TEMPLATE_DATA_NAME__(intValue);
+            return true;
+        }
+
+        id = Empty;
+        return false;
+    }
+
+    /// <summary>
+    /// Determines if the two given values are equal
+    /// </summary>
+    /// <param name="left">The left operand</param>
+    /// <param name="right">The right operand</param>
+    /// <returns>True if the values are equal, otherwise false</returns>
+    public static bool operator ==(TEMPLATE_DATA_NAME__ left, TEMPLATE_DATA_NAME__ right) => left.Equals(right);
+
+    /// <summary>
+    /// Determines if the two given values are not equal
+    /// </summary>
+    /// <param name="left">The left operand</param>
+    /// <param name="right">The right operand</param>
+    /// <returns>True if the values are not equal, otherwise false</returns>
+    public static bool operator !=(TEMPLATE_DATA_NAME__ left, TEMPLATE_DATA_NAME__ right) => !left.Equals(right);
+
+}

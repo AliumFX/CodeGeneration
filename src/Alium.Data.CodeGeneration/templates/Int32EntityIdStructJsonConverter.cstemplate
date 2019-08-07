@@ -1,0 +1,35 @@
+﻿    /// <summary>
+    /// Handles custom conversion during JSON.NET serialisation
+    /// </summary>
+    public class TEMPLATE_DATA_NAME__JsonConverter : Newtonsoft.Json.JsonConverter
+    {
+        /// <inheritdoc />
+        public override bool CanConvert(System.Type objectType) => objectType == typeof(TEMPLATE_DATA_NAME__);
+
+        /// <inheritdoc />
+        public override object? ReadJson(Newtonsoft.Json.JsonReader reader, System.Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
+        {
+            int? id = serializer.Deserialize<int?>(reader);
+            if (!id.HasValue)
+            {
+                return Empty;
+            }
+
+            return new TEMPLATE_DATA_NAME__(id.Value);
+        }
+
+        /// <inheritdoc />
+        public override void WriteJson(Newtonsoft.Json.JsonWriter writer, object source, Newtonsoft.Json.JsonSerializer serializer)
+        {
+            if (source is TEMPLATE_DATA_NAME__ value)
+            {
+                if (value.HasValue)
+                {
+                    serializer.Serialize(writer, value.Value);
+                    return;
+                }
+            }
+
+            serializer.Serialize(writer, null);
+        }
+    }

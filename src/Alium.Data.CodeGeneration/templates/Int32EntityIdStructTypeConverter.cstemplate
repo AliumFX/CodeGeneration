@@ -1,0 +1,20 @@
+﻿    /// <summary>
+    /// Handles custom conversion from an <see cref="int"/> to a <see cref="TEMPLATE_DATA_NAME__"/>
+    /// </summary>
+    public class TEMPLATE_DATA_NAME__TypeConverter : System.ComponentModel.TypeConverter
+    {
+        /// <inheritdoc />
+        public override bool CanConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType)
+            => sourceType == typeof(int) || sourceType == typeof(int?);
+
+        /// <inheritdoc />
+        public override object ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
+        {
+            if (value is int intValue)
+            {
+                return new TEMPLATE_DATA_NAME__(intValue);
+            }
+
+            return Empty;
+        }
+    }
